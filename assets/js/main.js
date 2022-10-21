@@ -293,28 +293,69 @@
 
 })()
 
- /**
-   * Send Mail Function
-   */
-  // var btn = document.getElementById('submit');
-  // btn.addEventListener('click',function(e) {
-  //     e.preventDefault()
-  //     var name = document.getElementById('name').value;
-  //     var email = document.getElementById('email').value;
-  //     var subject = document.getElementById('subject').value;
-  //     var message = document.getElementById('message').value;
-  //     var body = 'name:' +name + '<br/>email: ' +email + '<br/>subject: ' +subject + '<br/>message: ' +message;
-  //    Email.send({
-  //   Host : "smtp.gmail.com",
-  //   Username : "contact.ingotec@gmail.com",
-  //   Password : "kkvxtqshvdbwavux",
-  //   To : 'contact.ingotec@gmail.com',
-  //   From : email,
-  //   Subject : subject,
-  //   Body : body
-  // }).then(
-  //   message => alert(message)
-  // );
-  // })
+// OWL-CAROUSAL
+$('.owl-carousel').owlCarousel({
+  items: 3,
+  loop:true,
+  nav:false,
+  dot:true,
+  autoplay: true,
+  slideTransition: 'linear',
+  autoplayHoverPause: true,
+  responsive:{
+    0:{
+        items:1
+    },
+    600:{
+        items:2
+    },
+    1000:{
+        items:3
+    }
+}
+})
 
-  
+// SCROLLSPY
+$(document).ready(function() {
+$(".nav-link").click(function() {
+    var t = $(this).attr("href");
+    $("html, body").animate({
+        scrollTop: $(t).offset().top - 75
+    }, {
+        duration: 1000,
+    });
+    $('body').scrollspy({ target: '.navbar',offset: $(t).offset().top });
+    return false;
+});
+
+});
+
+// AOS
+AOS.init({
+  offset: 120, 
+  delay: 0,
+  duration: 1200, 
+  easing: 'ease', 
+  once: true, 
+  mirror: false, 
+  anchorPlacement: 'top-bottom', 
+  disable: "mobile"
+});
+
+//SIDEBAR-OPEN
+$('#navbarSupportedContent').on('hidden.bs.collapse', function () {
+  $("body").removeClass("sidebar-open");
+})
+
+$('#navbarSupportedContent').on('shown.bs.collapse', function () {
+  $("body").addClass("sidebar-open");
+})
+
+
+window.onresize = function() {
+  var w = window.innerWidth;
+  if(w>=992) {
+    $('body').removeClass('sidebar-open');
+    $('#navbarSupportedContent').removeClass('show');
+  }
+}
